@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nog eventjes maar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .message {
+            font-size: 30vh;
+            color: #333;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 1.5s ease-in-out;
+        }
+        #title {
+            font-size: 12vh;
+            font-family: 'Orbitron', sans-serif;
+            color: #333;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        #subtitle {
+            font-size: 8vh;
+            font-family: 'Orbitron', sans-serif;
+            color: #333;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        #countdown {
+            font-family: 'VT323', monospace;
+            font-size: 10vh;
+            color: red;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div id="message1" class="message">NOG</div>
+<div id="message2" class="message">EVEN</div>
+<div id="message3" class="message">WACHTEN</div>
+<div id="title">JC MANNSCHAFT LUSTRUMREIS</div>
+<div id="subtitle">2024</div>
+<div id="countdown"></div>
+
+<script>
+    // Fade in and out messages one after another with full disappearance
+    setTimeout(() => {
+        document.getElementById('message1').style.opacity = 1;
+    }, 500);
+
+    setTimeout(() => {
+        document.getElementById('message1').style.opacity = 0;
+    }, 2500);
+
+    setTimeout(() => {
+        document.getElementById('message2').style.opacity = 1;
+    }, 3500);
+
+    setTimeout(() => {
+        document.getElementById('message2').style.opacity = 0;
+    }, 5500);
+
+    setTimeout(() => {
+        document.getElementById('message3').style.opacity = 1;
+    }, 6500);
+
+    setTimeout(() => {
+        document.getElementById('message3').style.opacity = 0;
+    }, 8500);
+
+    // Show title and subtitle after a pause
+    setTimeout(() => {
+        document.getElementById('title').style.opacity = 1;
+        document.getElementById('subtitle').style.opacity = 1;
+    }, 10000);
+
+    // Show the countdown 3 seconds after the title
+    setTimeout(() => {
+        document.getElementById('countdown').style.opacity = 1;
+    }, 13000);
+
+    // Countdown to 31 August at 12:20
+    function getCountdownTargetDate() {
+        var targetDate = new Date('2024-08-31T12:20:00');
+        return targetDate;
+    }
+
+    var countDownDate = getCountdownTargetDate();
+
+    // Update the countdown every second
+    var x = setInterval(function() {
+
+        // Current time
+        var now = new Date().getTime();
+
+        // Calculate the difference between now and the countdown time
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes, and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="countdown"
+        document.getElementById("countdown").innerHTML = days + " dagen " + hours + " uur " + minutes + " minuten " + seconds + " seconden";
+
+        // If the countdown is over, write some text 
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById('countdown').innerHTML = "De tijd is aangebroken!";
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>
+
